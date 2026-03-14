@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "UOOC 刷课助手",
+  "version": "40.1",
+  "description": "UOOC 自动静音、二倍速、防暂停及跨章连播插件",
+  "content_scripts": [
+    {
+      "matches": ["*://*.uooc.net.cn/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
