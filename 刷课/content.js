@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name         UOOC 极简助手 (终极绝杀融合版)
-// @namespace    http://tampermonkey.net/
-// @version      40.1
-// @description  v40底盘 + 完美弹窗秒解移植：满血后台、弹窗秒杀、独立警报、附件指纹
-// @author       Gemini & You
-// @match        *://*.uooc.net.cn/*
-// @grant        none
-// ==/UserScript==
-
 (function() {
     'use strict';
     
