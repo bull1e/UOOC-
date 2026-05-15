@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         UOOC 极简助手 (终极绝杀融合版)
+// @namespace    http://tampermonkey.net/
+// @version      40.1
+// @description  优课在线（UOOC）全自动刷课辅助：满血后台挂机、弹窗秒杀、独立警报、附件指纹透视、原生防息屏音效。全屏打游戏挂机依然稳如老狗。
+// @author       你的名字 (或 GitHub ID)
+// @match        *://*.uooc.net.cn/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=uooc.net.cn
+// @grant        none
+// @license      MIT
+// ==/UserScript==
+
 (function() {
     'use strict';
     
@@ -137,7 +149,7 @@
 
         engineStarted = true; 
         this.className = 'running'; 
-        this.innerText = '✅ 满血后台运行中';
+        this.innerText = '后台运行中';
         log("🔥 引擎全开！支持全屏打游戏挂机。");
         
         playDing();
@@ -220,10 +232,12 @@
        let radar = Array.from(document.querySelectorAll('.basic, .catalog-item, div[ng-click*="goSource"]'))
             .filter(el => {
                 let t = el.innerText.trim();
+                // 1. 过滤掉隐藏元素和顶部的无关 Tab 按钮
                 if (el.offsetHeight === 0 || !t || ['目录','笔记','提问','返回'].includes(t)) return false;
-                let hasTask = el.querySelector('.taskpoint') !== null;
-                let isFolder = /(第.*?章|第.*?节)/.test(t);
-                return hasTask || isFolder; // 只认任务点或文件夹，非任务点瞬间无视！
+                
+                // 2. 废弃正则命名校验！只要出现在侧边栏列表中，统统视为合法目标加入雷达。
+                // 哪怕是未展开的纯文字文件夹，点一下它总能展开，展开后就能抓到里面的视频。
+                return true; 
             });
 
         let curIdx = -1;
